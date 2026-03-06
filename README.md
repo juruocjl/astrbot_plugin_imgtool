@@ -36,10 +36,11 @@
 参数：
 
 - `prompt` (string): 生图提示词。
+- `reference_message_id` (string): 可选，参考图所在消息 ID。若能找到该消息里的图片，则使用第一张作为参考图；找不到则回退使用当前消息第一张图片。
 
 说明：
 
-- 工具对 LLM 暴露最简接口，仅保留 `prompt`。
+- 工具对 LLM 暴露简化接口，核心只需 `prompt`，可选传 `reference_message_id`。
 - 模型、分辨率、推理步数等统一使用插件配置默认值。
 
 返回：
