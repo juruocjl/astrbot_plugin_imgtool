@@ -3,5 +3,5 @@ display_name: SiliconFlow 生图工具
 desc: 基于硅基流动 API 的 AstrBot 生图插件，支持 LLM 工具调用。
 version: v1.0.0
 author: cjlqwq
-repo: https://github.com/cjlqwq/astrbot_plugin_imgtool
+repo: https://github.com/juruocjl/astrbot_plugin_imgtool
 astrbot_version: ">=4.16,<5"
