@@ -1,0 +1,42 @@
+{
+  "api_key": {
+    "description": "SiliconFlow API Key",
+    "type": "string",
+    "hint": "在 https://cloud.siliconflow.cn/account/ak 获取，调用时会以 Bearer 方式鉴权。",
+    "obvious_hint": true,
+    "default": ""
+  },
+  "api_base": {
+    "description": "SiliconFlow API Base",
+    "type": "string",
+    "hint": "一般保持默认即可。",
+    "default": "https://api.siliconflow.cn/v1"
+  },
+  "model": {
+    "description": "默认生图模型",
+    "type": "string",
+    "hint": "例如 Kwai-Kolors/Kolors 或其他 SiliconFlow 支持的文生图模型。",
+    "default": "Kwai-Kolors/Kolors"
+  },
+  "default_image_size": {
+    "description": "默认分辨率",
+    "type": "string",
+    "hint": "格式: 宽x高，例如 1024x1024。",
+    "default": "1024x1024"
+  },
+  "default_num_inference_steps": {
+    "description": "默认推理步数",
+    "type": "int",
+    "default": 20
+  },
+  "default_guidance_scale": {
+    "description": "默认 guidance scale",
+    "type": "float",
+    "default": 7.5
+  },
+  "request_timeout": {
+    "description": "请求超时（秒）",
+    "type": "int",
+    "default": 90
+  }
+}
