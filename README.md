@@ -4,7 +4,7 @@
 
 - `siliconflow_generate_image`
 
-该工具会调用 `POST https://api.siliconflow.cn/v1/images/generations` 生成图片，并返回图片 URL。
+该工具会调用 `POST https://api.siliconflow.cn/v1/images/generations` 生成图片，并直接发送到当前会话。
 
 ## 功能
 
@@ -36,16 +36,16 @@
 参数：
 
 - `prompt` (string): 生图提示词。
-- `image_size` (string): 可选，格式 `宽x高`，如 `1024x1024`。
-- `negative_prompt` (string): 可选。
-- `model` (string): 可选，不传则使用配置默认模型。
-- `num_inference_steps` (number): 可选，传 `0` 时走默认值。
-- `guidance_scale` (number): 可选，传 `0` 时走默认值。
-- `seed` (number): 可选，传 `-1` 表示不指定。
+
+说明：
+
+- 工具对 LLM 暴露最简接口，仅保留 `prompt`。
+- 模型、分辨率、推理步数等统一使用插件配置默认值。
 
 返回：
 
-- 文本结果，包含生成图片 URL（该 URL 一般约 1 小时后过期，请尽快下载保存）。
+- 文本结果。正常情况下会提示“图片已生成并直接发送到当前会话”。
+- 若自动发图失败，会返回可手动打开的图片 URL 作为兜底。
 
 ## 参考文档
 

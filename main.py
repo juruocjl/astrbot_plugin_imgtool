@@ -98,34 +98,19 @@ class SiliconFlowImageToolPlugin(Star):
         self,
         event: AstrMessageEvent,
         prompt: str,
-        image_size: str = "",
-        negative_prompt: str = "",
-        model: str = "",
-        num_inference_steps: int = 0,
-        guidance_scale: float = 0.0,
-        seed: int = -1,
     ) -> str:
-        """使用 SiliconFlow 生成图片，返回图片 URL。
+        """使用 SiliconFlow 生成图片并直接发送到当前会话。
 
         Args:
             prompt(string): 生图提示词。
-            image_size(string): 图片分辨率，格式为 widthxheight，例如 1024x1024。留空使用插件默认值。
-            negative_prompt(string): 负面提示词，可选。
-            model(string): 模型名，可选，留空使用配置中的默认模型。
-            num_inference_steps(number): 推理步数，可选，传 0 时使用配置默认值。
-            guidance_scale(number): 提示词遵循强度，可选，传 0 时使用配置默认值。
-            seed(number): 随机种子，可选，传 -1 表示不指定。
+
+        说明:
+            该工具对 LLM 暴露最简接口，仅保留 prompt。
+            模型、分辨率、步数等参数统一使用插件配置中的默认值。
         """
-        _ = event
         try:
             image_url = await self._generate_image(
                 prompt=prompt,
-                negative_prompt=negative_prompt or None,
-                image_size=image_size or None,
-                model=model or None,
-                num_inference_steps=num_inference_steps if num_inference_steps > 0 else None,
-                guidance_scale=guidance_scale if guidance_scale > 0 else None,
-                seed=seed if seed >= 0 else None,
             )
 
             # 直接把图片发到当前会话，用户无需再点开 URL。
