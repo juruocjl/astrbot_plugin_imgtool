@@ -1,4 +1,5 @@
 import re
+import inspect
 from typing import Any
 
 import httpx
@@ -91,7 +92,10 @@ class SiliconFlowImageToolPlugin(Star):
         # 某些组件对象有 to_dict / __dict__。
         if hasattr(obj, "to_dict") and callable(getattr(obj, "to_dict")):
             try:
-                refs.extend(self._extract_image_refs_from_obj(obj.to_dict()))
+                dumped = obj.to_dict()
+                # 某些组件 to_dict 是 async，避免在同步函数中误调用导致 RuntimeWarning。
+                if not inspect.isawaitable(dumped):
+                    refs.extend(self._extract_image_refs_from_obj(dumped))
             except Exception:
                 pass
         elif hasattr(obj, "__dict__"):
@@ -143,7 +147,10 @@ class SiliconFlowImageToolPlugin(Star):
 
             if hasattr(node, "to_dict") and callable(getattr(node, "to_dict")):
                 try:
-                    return walk(node.to_dict())
+                    dumped = node.to_dict()
+                    if not inspect.isawaitable(dumped):
+                        return walk(dumped)
+                    return None
                 except Exception:
                     return None
 
