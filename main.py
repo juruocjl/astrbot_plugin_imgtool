@@ -10,7 +10,7 @@ from astrbot.api.event import AstrMessageEvent, MessageChain, filter
 from astrbot.api.star import Context, Star, register
 
 
-@register("astrbot_plugin_imgtool", "cjlqwq", "硅基流动生图工具插件", "1.0.0")
+@register("astrbot_plugin_imgtool", "cjlqwq", "硅基流动生图工具插件", "1.0.2")
 class SiliconFlowImageToolPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig):
         super().__init__(context)
